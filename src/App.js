@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import PropsComp from "./components/PropsComp";
+import ProductInfo from "./components/ProductInfo";
 
 function App() {
+  let bonus = 20;
+  let stocksList = ["TCS", "Infy", "SBI"];
+  const otherStocks = {
+    stock1: "HDFC Bank",
+    stock2: "ICICI Bank",
+  };
+
+  let product = {
+    id: "p01",
+    name: "name 1",
+    price: 5,
+    quantity: 6,
+    status: true,
+    photo: "iphone13.png",
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <PropsComp
+        stockName="Happiest Mind"
+        price={1200.0}
+        isListed={true}
+        bonusShare={bonus}
+        stockHolders={stocksList}
+      />
+      <ProductInfo product={product} />
+    </>
   );
 }
 
