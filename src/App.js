@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import ClassCounterOne from "./components/ClassCounterOne";
+import DataFetch from "./components/DataFetch";
+import FetchData from "./components/FetchData";
+import HookCounter1 from "./components/HookCounter1";
 
 function App() {
+  const [advice, setAdvice] = useState("");
+  useEffect(() => {
+    const url = "https://api.adviceslip.com/advice";
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        console.log(json);
+        setAdvice(json.slip.advice);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  /*
+
+  */
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {advice}
+      {/* <ClassCounterOne /> */}
+      {/* <HookCounter1 /> */}
+
+      {/* <FetchData /> */}
+      <DataFetch />
     </div>
   );
 }
